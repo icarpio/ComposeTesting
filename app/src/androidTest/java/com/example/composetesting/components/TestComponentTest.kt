@@ -1,5 +1,19 @@
 package com.example.composetesting.components
 
+import androidx.compose.ui.test.assert
+import androidx.compose.ui.test.assertContentDescriptionContains
+import androidx.compose.ui.test.assertContentDescriptionEquals
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertIsNotDisplayed
+import androidx.compose.ui.test.assertIsNotEnabled
+import androidx.compose.ui.test.assertIsNotFocused
+import androidx.compose.ui.test.assertIsNotSelected
+import androidx.compose.ui.test.assertIsOff
+import androidx.compose.ui.test.assertIsOn
+import androidx.compose.ui.test.assertIsSelected
+import androidx.compose.ui.test.assertTextContains
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.doubleClick
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithContentDescription
@@ -59,6 +73,20 @@ class TestComponentTest {
         composeTestRule.onNodeWithText("Hello").performTextInput("He") // busca un nodo con el texto "Hello" y luego simula la entrada de texto "He" en ese nodo. Es como si el usuario hubiera escrito "He" en el campo de texto.
         composeTestRule.onNodeWithText("Hello").performTextReplacement("He") // este método permite reemplazar el texto actual en un campo de texto o un nodo que admite entrada de texto.
 
-
+        //Assertions
+        composeTestRule.onNodeWithText("Hello").assertExists() //Si existe
+        composeTestRule.onNodeWithText("Hello").assertDoesNotExist() //No existe
+        composeTestRule.onNodeWithText("Hello").assertContentDescriptionEquals("visualIcon")
+        composeTestRule.onNodeWithText("Hello").assertContentDescriptionContains("visualIcon")
+        composeTestRule.onNodeWithText("Hello").assertIsDisplayed() //si es visible, estos métodos se utilizan para verificar la visibilidad de un nodo en la pantalla.
+        composeTestRule.onNodeWithText("Hello").assertIsNotDisplayed() //si no es visible
+        composeTestRule.onNodeWithText("Hello").assertIsEnabled()
+        composeTestRule.onNodeWithText("Hello").assertIsNotEnabled() // Este método verifica si el nodo con el texto "" no está habilitado o no es interactuable.
+        composeTestRule.onNodeWithText("Hello").assertIsSelected() // Este método verifica si el nodo con el texto "" está seleccionado.
+        composeTestRule.onNodeWithText("Hello").assertIsNotSelected() // Este método verifica si el nodo con el texto "" no está seleccionado.
+        composeTestRule.onNodeWithText("Hello").assertIsNotFocused() // Este método verifica si el nodo con el texto "" no tiene foco.
+        composeTestRule.onNodeWithText("Hello").assertIsOn() //Este método verifica si el nodo con el texto "" está en un estado "on" o activo, como por ejemplo un switch o un botón de toggle que está activado.
+        composeTestRule.onNodeWithText("Hello").assertTextEquals("ello")
+        composeTestRule.onNodeWithText("Hello").assertTextContains("Hello")
     }
 }
