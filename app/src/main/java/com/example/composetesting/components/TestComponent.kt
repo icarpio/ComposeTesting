@@ -20,8 +20,8 @@ fun TestComponent(){
     var name by rememberSaveable { mutableStateOf("UserName") }
 
    Column(Modifier.fillMaxSize()) {
-       TextField(value = name, onValueChange = {name = it})
-       Text(text = "Te llamas $name")
+       TextField(value = name, onValueChange = {name = it}, modifier = Modifier.testTag("textFieldName"))
+       Text(text = "Te llamas $name", modifier = Modifier.testTag("textGreeting"))
        //Text(text = "World", Modifier.testTag("component2"))
        Image(Icons.Default.AddCircle, contentDescription = "imageTest")
    }

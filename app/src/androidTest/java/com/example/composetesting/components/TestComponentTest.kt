@@ -1,5 +1,6 @@
 package com.example.composetesting.components
 
+import androidx.compose.runtime.internal.composableLambda
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertContentDescriptionContains
 import androidx.compose.ui.test.assertContentDescriptionEquals
@@ -89,4 +90,26 @@ class TestComponentTest {
         composeTestRule.onNodeWithText("Hello").assertTextEquals("ello")
         composeTestRule.onNodeWithText("Hello").assertTextContains("Hello")
     }
+
+    @Test
+    fun whenComponentStart_thenVerifyContentIsUserName(){
+        composeTestRule.setContent {
+            TestComponent()
+        }
+        composeTestRule.onNodeWithText("UserName", ignoreCase = true).assertExists()
+        composeTestRule.onNodeWithTag("textFieldName").assertTextContains("UserName")
+    }
+
+    @Test
+    fun whenNameIsAdded_thenVerifyTextContainGreeting(){
+        composeTestRule.setContent {
+            TestComponent()
+        }
+        composeTestRule.onNodeWithTag("textFieldName").performTextClearance()
+        composeTestRule.onNodeWithTag("textFieldName").performTextInput("UserName")
+        composeTestRule.onNodeWithTag("textGreeting").assertTextEquals("Te llamas UserName")
+    }
+
+
+
 }
